@@ -2,7 +2,7 @@
 
 Keep your movie memories. Back up a **public Must profile** and prepare separate movie imports for **Letterboxd watched films** and **watchlist**.
 
-**[Open the web app →](https://vitali-ai.github.io/must-rescue/)** · [Русская инструкция](README.ru.md) · [Letterboxd import format](https://letterboxd.com/about/importing-data/)
+**[Open the web app →](https://vitali-ai.github.io/must-rescue/)** · [Letterboxd import format](https://letterboxd.com/about/importing-data/)
 
 [![Must Rescue: Must to Letterboxd, with personal backups and separate film imports](docs/social-preview.png)](https://vitali-ai.github.io/must-rescue/)
 
@@ -31,7 +31,7 @@ The demo uses fictional records. It does not retrieve another person's collectio
 | `backup/want.csv`, `watched.csv`, `shows.csv`, `youtube.csv` | Human-readable copies, including TV entries excluded from movie imports |
 | `backup/seasons.csv` | Available season ratings, status, progress and reviews |
 | `backup/verification.json` | Expected/received IDs, missing records, duplicates, missing product metadata and rating count discrepancies |
-| `READ-ME.txt` | English and Russian import instructions |
+| `READ-ME.txt` | English import instructions |
 
 Must movie lists can contain TV shows. These stay in the backup and are excluded from the movie import files. Must stores season ratings separately; this app retrieves show statistics, season IDs and season records rather than interpreting a missing show-level rating as zero. The backup retains show-to-season and episode-ID metadata, but does not promise a complete per-episode watch history.
 
@@ -80,7 +80,7 @@ npm test
 python3 -m http.server 8080 --directory docs
 ```
 
-Open `http://localhost:8080` (ES modules require an HTTP server, not `file://`). GitHub Pages: **Settings → Pages → Deploy from a branch → main → /docs**. No build step is needed. You can host `docs/` on any static host. The site has English and Russian interfaces and uses system fonts. No hosted API proxy is required. If forking, update the canonical URL, social metadata and `sitemap.xml` for your own deployment. The sitemap can be submitted in Google Search Console after verifying ownership; publishing it does not guarantee indexing. Google only reads `robots.txt` at the domain root, so this project subdirectory does not pretend to provide a domain-wide robots file.
+Open `http://localhost:8080` (ES modules require an HTTP server, not `file://`). GitHub Pages: **Settings → Pages → Deploy from a branch → main → /docs**. No build step is needed. You can host `docs/` on any static host. The site has an English interface and uses system fonts. No hosted API proxy is required. If forking, update the canonical URL, social metadata and `sitemap.xml` for your own deployment. The sitemap can be submitted in Google Search Console after verifying ownership; publishing it does not guarantee indexing. Google only reads `robots.txt` at the domain root, so this project subdirectory does not pretend to provide a domain-wide robots file.
 
 ## Contributing
 
