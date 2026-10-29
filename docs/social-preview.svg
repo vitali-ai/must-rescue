@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f9fc"/>
+  <rect x="76" y="65" width="48" height="48" rx="12" fill="#007aff"/>
+  <path d="M100 77v19m-7-7 7 7 7-7M88 98v6h24v-6" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="140" y="98" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#182333">Must Rescue</text>
+  <text x="76" y="225" font-family="Arial,sans-serif" font-size="67" font-weight="700" letter-spacing="-2" fill="#182333">Must</text>
+  <path d="M280 205h100m-16-16 16 16-16 16" fill="none" stroke="#007aff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="416" y="225" font-family="Arial,sans-serif" font-size="67" font-weight="700" letter-spacing="-2" fill="#182333">Letterboxd</text>
+  <text x="78" y="295" font-family="Arial,sans-serif" font-size="29" fill="#647184">Your films. Your ratings. Yours to keep.</text>
+  <rect x="76" y="355" width="1048" height="124" rx="18" fill="#fff" stroke="#dce3ed"/>
+  <text x="110" y="406" font-family="Arial,sans-serif" font-size="23" fill="#182333">Personal backup + separate watched and watchlist imports</text>
+  <text x="110" y="444" font-family="Arial,sans-serif" font-size="19" fill="#647184">No password. No installation. Open source.</text>
+  <text x="78" y="558" font-family="Arial,sans-serif" font-size="21" fill="#007aff">vitali-ai.github.io/must-rescue</text>
+  <rect x="944" y="522" width="180" height="52" rx="10" fill="#eaf3ff"/>
+  <text x="1034" y="555" text-anchor="middle" font-family="monospace" font-size="20" fill="#236dcc">CSV + JSON</text>
+</svg>

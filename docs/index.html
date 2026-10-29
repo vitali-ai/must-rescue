@@ -2,16 +2,28 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Save your Must movie collection. Download a personal backup and separate Letterboxd files for watched films and your watchlist. No password needed.">
-  <meta name="theme-color" content="#f6f4ef">
+  <meta name="description" content="Экспорт из Must в Letterboxd: сохраните фильмы, личные оценки и watchlist в CSV и JSON. Бесплатный инструмент без пароля и установки.">
+  <meta name="theme-color" content="#007aff">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://vitali-ai.github.io/must-rescue/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Must Rescue">
+  <meta property="og:title" content="Must Rescue — Must to Letterboxd export">
+  <meta property="og:description" content="Save your Must films, ratings and watchlist. Download a backup and separate Letterboxd import files. No password needed.">
+  <meta property="og:url" content="https://vitali-ai.github.io/must-rescue/">
+  <meta property="og:image" content="https://vitali-ai.github.io/must-rescue/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Must Rescue: export your Must collection to Letterboxd with CSV and JSON backups">
+  <meta name="twitter:card" content="summary_large_image">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://mustapp.com; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-  <title>Must Rescue — keep your movie memories</title>
+  <title>Must Rescue — экспорт Must в Letterboxd · фильмы, оценки, watchlist</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
   <script type="module" src="app.mjs"></script>
 </head>
 <body>
   <header class="header wrap">
-    <a class="brand" href="./" aria-label="Must Rescue"><span class="brand-mark" aria-hidden="true">m<span>r</span></span>Must Rescue</a>
+    <a class="brand" href="./" aria-label="Must Rescue"><img class="brand-mark" src="favicon.svg" width="36" height="36" alt="">Must Rescue</a>
     <nav aria-label="Navigation"><a href="https://github.com/vitali-ai/must-rescue" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button id="language" class="language" type="button">English</button></nav>
   </header>
   <main class="wrap">
@@ -22,10 +34,15 @@
         <p class="intro" data-i18n="intro">Заберите свою коллекцию из Must: фильмы, оценки и сериалы. Получите резервную копию и готовые файлы для Letterboxd.</p>
         <div class="hero-tags"><span data-i18n="tag1">Без пароля</span><span data-i18n="tag2">Без установки</span><span data-i18n="tag3">Открытый код</span></div>
       </div>
-      <div class="art" aria-hidden="true">
-        <div class="orbit"></div><div class="ticket ticket-back"><div class="ticket-top">THE ONES YOU LOVED</div><div class="moon"></div><div class="ticket-bottom">A COLLECTION WORTH KEEPING</div></div>
-        <div class="ticket ticket-front"><div class="ticket-top">YOUR LIFE IN FILM</div><div class="sun"></div><div class="mountains"></div><div class="ticket-bottom"><span>★★★★★</span><span>KEEP FOREVER</span></div></div>
-        <span class="art-note">the good ones stay with you.</span><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span>
+      <div class="transfer" aria-labelledby="transfer-title">
+        <div class="transfer-caption" data-i18n="transferLabel">ВАША КОЛЛЕКЦИЯ ПЕРЕЕЗЖАЕТ</div>
+        <div class="transfer-route" id="transfer-title">
+          <div class="transfer-app"><span class="must-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M11 20 29 10v12L11 32z" fill="currentColor"/></svg></span><span>Must</span></div>
+          <svg class="transfer-arrow" viewBox="0 0 64 24" aria-label="to"><path d="M2 12h55m-8-8 8 8-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="transfer-app"><span class="letterboxd-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Letterboxd</span></div>
+        </div>
+        <div class="transfer-data"><div><span class="transfer-check" aria-hidden="true">✓</span><span data-i18n="transferFilms">Просмотренные фильмы и оценки</span></div><div><span class="transfer-check" aria-hidden="true">✓</span><span data-i18n="transferWatchlist">Список «хочу посмотреть»</span></div></div>
+        <div class="transfer-backup"><span class="file-badge">CSV + JSON</span><span data-i18n="transferBackup">И резервная копия для вас</span></div>
       </div>
     </section>
     <section class="export-card" aria-labelledby="export-title">
@@ -66,6 +83,6 @@
       <details><summary data-i18n="q4">Кто видит мою коллекцию?</summary><p data-i18n="a4">Приложение читает публичный профиль Must напрямую с вашего устройства. Мы не запрашиваем пароль, не используем аналитику и не сохраняем коллекцию на сервере или в браузерном хранилище. GitHub обслуживает сайт, а Must получает запросы к своему API. После экспорта можно снова закрыть профиль.</p></details>
     </section>
   </main>
-  <footer class="wrap footer"><div><a class="brand" href="./">Must Rescue</a><p data-i18n="footer">Создано, чтобы истории просмотров не терялись.</p></div><div><a href="https://github.com/vitali-ai/must-rescue" target="_blank" rel="noopener noreferrer" data-i18n="source">Открытый код · MIT ↗</a><p data-i18n="unofficial">Независимый проект. Не связан с Must или Letterboxd.</p></div></footer>
+  <footer class="wrap footer"><div><a class="brand" href="./">Must Rescue</a><p data-i18n="footer">Создано, чтобы истории просмотров не терялись.</p></div><div><a href="https://github.com/vitali-ai/must-rescue" target="_blank" rel="noopener noreferrer" data-i18n="source">Открытый код · MIT ↗</a><a class="star-link" href="https://github.com/vitali-ai/must-rescue" target="_blank" rel="noopener noreferrer" data-i18n="star">☆ Поставить звезду на GitHub</a><p data-i18n="unofficial">Независимый проект. Не связан с Must или Letterboxd.</p></div></footer>
 </body>
 </html>

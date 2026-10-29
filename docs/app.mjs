@@ -5,6 +5,7 @@ const translated = [...document.querySelectorAll('[data-i18n]')];
 const ru = Object.fromEntries(translated.map(node => [node.dataset.i18n, node.textContent]));
 ru.headline = 'Фильмы меняют нас.\nСохраните свои.';
 const en = {
+  transferLabel: 'YOUR COLLECTION MOVES WITH YOU', transferFilms: 'Watched films and personal ratings', transferWatchlist: 'Your want-to-watch list', transferBackup: 'Plus a backup to keep', star: '☆ Star on GitHub',
   eyebrow: 'Your collection. Yours to keep.', headline: 'Films stay with us.\nYour collection should, too.',
   intro: 'Take your Must collection with you: films, ratings and TV shows. Get a personal backup and ready-to-import Letterboxd files.',
   tag1: 'No password', tag2: 'No installation', tag3: 'Open source', local: 'Your data stays in your browser',

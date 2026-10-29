@@ -4,6 +4,10 @@ Keep your movie memories. Back up a **public Must profile** and prepare separate
 
 **[Open the web app →](https://vitali-ai.github.io/must-rescue/)** · [Русская инструкция](README.ru.md) · [Letterboxd import format](https://letterboxd.com/about/importing-data/)
 
+[![Must Rescue: Must to Letterboxd, with personal backups and separate film imports](docs/social-preview.png)](https://vitali-ai.github.io/must-rescue/)
+
+If this helped you save your collection, you can [star the repository](https://github.com/vitali-ai/must-rescue) to bookmark it and support the project.
+
 No password, account token, installation, analytics or database. The website reads Must directly from your browser and builds downloads locally. It does not change either account. Your export is not committed to this repository or uploaded to an application server. GitHub serves the website and Must receives API requests.
 
 ## Use the website
@@ -76,7 +80,7 @@ npm test
 python3 -m http.server 8080 --directory docs
 ```
 
-Open `http://localhost:8080` (ES modules require an HTTP server, not `file://`). GitHub Pages: **Settings → Pages → Deploy from a branch → main → /docs**. No build step is needed. You can host `docs/` on any static host. The site has English and Russian interfaces and uses system fonts. No hosted API proxy is required.
+Open `http://localhost:8080` (ES modules require an HTTP server, not `file://`). GitHub Pages: **Settings → Pages → Deploy from a branch → main → /docs**. No build step is needed. You can host `docs/` on any static host. The site has English and Russian interfaces and uses system fonts. No hosted API proxy is required. If forking, update the canonical URL, social metadata and `sitemap.xml` for your own deployment. The sitemap can be submitted in Google Search Console after verifying ownership; publishing it does not guarantee indexing. Google only reads `robots.txt` at the domain root, so this project subdirectory does not pretend to provide a domain-wide robots file.
 
 ## Contributing
 
