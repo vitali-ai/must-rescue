@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Save your Must movie collection. Download a personal backup and separate Letterboxd files for watched films and your watchlist. No password needed.">
+  <meta name="theme-color" content="#f6f4ef">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://mustapp.com; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Must Rescue — keep your movie memories</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <header class="header wrap">
+    <a class="brand" href="./" aria-label="Must Rescue"><span class="brand-mark" aria-hidden="true">m<span>r</span></span>Must Rescue</a>
+    <nav aria-label="Navigation"><a href="https://github.com/vitali-ai/must-rescue" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button id="language" class="language" type="button">English</button></nav>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="headline">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">Ваша коллекция. Снова ваша.</span></div>
+        <h1 id="headline" data-i18n="headline">Фильмы меняют нас.<br>Сохраните свои.</h1>
+        <p class="intro" data-i18n="intro">Заберите свою коллекцию из Must: фильмы, оценки и сериалы. Получите резервную копию и готовые файлы для Letterboxd.</p>
+        <div class="hero-tags"><span data-i18n="tag1">Без пароля</span><span data-i18n="tag2">Без установки</span><span data-i18n="tag3">Открытый код</span></div>
+      </div>
+      <div class="art" aria-hidden="true">
+        <div class="orbit"></div><div class="ticket ticket-back"><div class="ticket-top">THE ONES YOU LOVED</div><div class="moon"></div><div class="ticket-bottom">A COLLECTION WORTH KEEPING</div></div>
+        <div class="ticket ticket-front"><div class="ticket-top">YOUR LIFE IN FILM</div><div class="sun"></div><div class="mountains"></div><div class="ticket-bottom"><span>★★★★★</span><span>KEEP FOREVER</span></div></div>
+        <span class="art-note">the good ones stay with you.</span><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span>
+      </div>
+    </section>
+    <section class="export-card" aria-labelledby="export-title">
+      <div class="card-heading"><span class="step">01 / EXPORT</span><span class="local-label"><span class="dot"></span><span data-i18n="local">Данные остаются в вашем браузере</span></span></div>
+      <h2 id="export-title" data-i18n="exportTitle">С какой коллекции начнём?</h2>
+      <form id="export-form">
+        <label for="profile" data-i18n="inputLabel">Ссылка на профиль Must или ник</label>
+        <div class="input-row"><input id="profile" name="profile" type="text" placeholder="https://mustapp.com/@your-nickname" autocomplete="off" autocapitalize="none" spellcheck="false" required maxlength="250" aria-describedby="profile-help"><button class="primary" id="submit" type="submit"><span data-i18n="exportButton">Получить файлы</span><span aria-hidden="true">↗</span></button></div>
+        <p class="input-help" id="profile-help" data-i18n="inputHelp">Профиль должен быть публичным. Пароль и коды входа не нужны.</p>
+        <label class="checkbox"><input type="checkbox" id="seasons" checked><span data-i18n="seasons">Также сохранить сезоны и оценки сериалов — это займёт больше времени</span></label>
+      </form>
+      <div class="status" id="status" hidden role="status" aria-live="polite"><div class="status-row"><span id="status-text"></span><button type="button" id="cancel" data-i18n="cancel">Отменить</button></div><progress id="progress" aria-label="Export progress"></progress><p data-i18n="patience">Большая коллекция может занять несколько минут. Оставьте вкладку открытой.</p></div>
+      <div id="error" class="error" role="alert" hidden></div>
+      <div class="card-footer"><span data-i18n="notReady">Сначала посмотреть, как это работает?</span><button id="demo" class="text-button" type="button" data-i18n="demo">Открыть пример →</button></div>
+    </section>
+    <section id="results" class="results" hidden aria-labelledby="results-title">
+      <div class="section-label" data-i18n="readyLabel">02 / ВАША КОЛЛЕКЦИЯ</div>
+      <div class="result-heading"><h2 id="results-title" data-i18n="readyTitle">Готово. Теперь это файлы.</h2><span id="result-user"></span></div>
+      <div id="demo-notice" class="notice" hidden data-i18n="demoNotice">Это вымышленные данные для примера. Чтобы выгрузить свою коллекцию, вставьте ссылку выше.</div>
+      <div id="warnings" class="notice" hidden></div>
+      <div class="download-grid">
+        <article class="download-card"><div class="file-type">ZIP / JSON + CSV</div><h3 data-i18n="backupTitle">Полная копия</h3><p data-i18n="backupText">Исходные данные, сериалы, сезоны и отчёт проверки. Сохраните в надёжном месте.</p><button class="primary" id="download-all" type="button"><span data-i18n="downloadZip">Скачать ZIP</span><span aria-hidden="true">↓</span></button></article>
+        <article class="download-card"><div class="file-type">LETTERBOXD / CSV</div><h3 data-i18n="watchedTitle">Просмотрено <span id="watched-count"></span></h3><p data-i18n="watchedText">Фильмы и личные оценки. Загрузите через основной импорт Letterboxd.</p><button class="secondary" id="download-watched" type="button" data-i18n="downloadCsv">Скачать CSV ↓</button></article>
+        <article class="download-card"><div class="file-type">LETTERBOXD / CSV</div><h3 data-i18n="wantTitle">Хочу посмотреть <span id="want-count"></span></h3><p data-i18n="wantText">Загрузите через Watchlist → Import films to watchlist. Отдельно от просмотренных.</p><button class="secondary" id="download-want" type="button" data-i18n="downloadCsv">Скачать CSV ↓</button></article>
+      </div>
+      <p class="result-detail" id="result-detail"></p>
+      <div class="import-note"><strong data-i18n="importNoteTitle">У каждого файла — свой вход.</strong><p data-i18n="importNote">Основной импорт Letterboxd отмечает фильмы просмотренными. Watchlist загружайте только из раздела Watchlist. Перед подтверждением проверьте совпадения названий и годов.</p><a href="https://letterboxd.com/about/importing-data/" target="_blank" rel="noopener noreferrer" data-i18n="importDocs">Инструкция Letterboxd ↗</a></div>
+    </section>
+    <section class="how" aria-labelledby="how-title"><div class="section-label" data-i18n="howLabel">ПРОСТОЙ ПЛАН</div><h2 id="how-title" data-i18n="howTitle">Коллекция переезжает вместе с вами.</h2><div class="how-grid">
+      <article><span class="how-number">01</span><h3 data-i18n="how1Title">Скопируйте ссылку</h3><p data-i18n="how1Text">В Must откройте свой профиль и поделитесь ссылкой. Если профиль закрыт, сделайте его публичным на время выгрузки.</p></article>
+      <article><span class="how-number">02</span><h3 data-i18n="how2Title">Сохраните файлы</h3><p data-i18n="how2Text">Мы запросим данные у Must, сверим записи и соберём архив прямо в браузере. Он не отправляется на наш сервер.</p></article>
+      <article><span class="how-number">03</span><h3 data-i18n="how3Title">Продолжайте в Letterboxd</h3><p data-i18n="how3Text">Импортируйте фильмы и watchlist отдельно. Сериалы и сезоны останутся в резервной копии.</p></article>
+    </div></section>
+    <section class="faq" aria-labelledby="faq-title"><h2 id="faq-title" data-i18n="faqTitle">Пара важных деталей</h2>
+      <details><summary data-i18n="q1">Что будет с моими оценками и датами?</summary><p data-i18n="a1">Личные оценки фильмов сохраняются из 10; Letterboxd переводит их в звёзды. Must отдаёт дату изменения записи, а не надёжную дату просмотра, поэтому мы не создаём записи дневника с этими датами. Доступные отзывы тоже сохраняются.</p></details>
+      <details><summary data-i18n="q2">Почему количество записей может отличаться?</summary><p data-i18n="a2">В Must в одном списке могут находиться фильмы и сериалы. CSV для Letterboxd содержит только фильмы. Сериалы сохраняются отдельно в архиве. Если API не вернул часть записей или число оценок расходится со статистикой Must, мы покажем предупреждение.</p></details>
+      <details><summary data-i18n="q3">Что делать, если Must не отвечает?</summary><p data-i18n="a3">Экспорт зависит от серверов Must. Если они недоступны, повторите позже. Иногда браузер блокирует запросы из-за CORS; тогда можно использовать CLI из GitHub. Уже скачанный backup.json можно открыть ниже без запросов к Must.</p><label class="upload-label" for="backup-file" data-i18n="openBackup">Открыть backup.json →</label><input type="file" id="backup-file" accept="application/json,.json"></details>
+      <details><summary data-i18n="q4">Кто видит мою коллекцию?</summary><p data-i18n="a4">Приложение читает публичный профиль Must напрямую с вашего устройства. Мы не запрашиваем пароль, не используем аналитику и не сохраняем коллекцию на сервере или в браузерном хранилище. GitHub обслуживает сайт, а Must получает запросы к своему API. После экспорта можно снова закрыть профиль.</p></details>
+    </section>
+  </main>
+  <footer class="wrap footer"><div><a class="brand" href="./">Must Rescue</a><p data-i18n="footer">Создано, чтобы истории просмотров не терялись.</p></div><div><a href="https://github.com/vitali-ai/must-rescue" target="_blank" rel="noopener noreferrer" data-i18n="source">Открытый код · MIT ↗</a><p data-i18n="unofficial">Независимый проект. Не связан с Must или Letterboxd.</p></div></footer>
+</body>
+</html>

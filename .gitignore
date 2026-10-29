@@ -1,0 +1,12 @@
+node_modules/
+exports/
+backup/
+*.zip
+*.csv
+*.xlsx
+.env*
+!.env.example
+.DS_Store
+__pycache__/
+playwright-report/
+test-results/

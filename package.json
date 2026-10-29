@@ -1,0 +1,10 @@
+{
+  "name": "must-rescue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Private-by-design public Must profile backup and Letterboxd CSV preparation",
+  "license": "MIT",
+  "engines": { "node": ">=24" },
+  "scripts": { "test": "node test/core.test.mjs", "start": "python3 -m http.server 8080 --directory docs", "export": "node --use-env-proxy cli.mjs" }
+}
