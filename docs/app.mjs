@@ -32,7 +32,7 @@ const en = {
   footer: 'Made so your movie memories do not get lost.', source: 'Open source · MIT ↗', unofficial: 'Independent project. Not affiliated with Must or Letterboxd.'
 };
 let language = navigator.language.startsWith('ru') ? 'ru' : 'en';
-let current = null, controller = null, isDemo = false;
+let current = null, controller = null, isDemo = false, currentError = null;
 function say(russian, english) { return language === 'ru' ? russian : english; }
 
 function paint() {
@@ -40,6 +40,7 @@ function paint() {
   document.documentElement.lang = language;
   $('language').textContent = language === 'ru' ? 'English' : 'Русский';
   if (current) paintResults();
+  if (currentError) showError(currentError);
 }
 function warningText(backup) {
   const lines = [];
@@ -77,6 +78,7 @@ function download(content, name, type) {
   setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
 function showError(error) {
+  currentError = error;
   let text;
   if (error.name === 'AbortError') text = say('Выгрузка отменена. Можно начать заново.', 'Export cancelled. You can start again.');
   else if (error.message === 'INVALID_USERNAME') text = say('Вставьте ник или ссылку вида https://mustapp.com/@nickname.', 'Enter a username or a link like https://mustapp.com/@nickname.');
@@ -97,7 +99,7 @@ $('export-form').addEventListener('submit', async event => {
   event.preventDefault();
   if (controller) return;
   controller = new AbortController();
-  $('error').hidden = true; $('status').hidden = false; $('submit').disabled = true;
+  currentError = null; $('error').hidden = true; $('status').hidden = false; $('submit').disabled = true;
   $('demo').disabled = true; $('backup-file').disabled = true; $('results').hidden = true; current = null;
   try {
     const request = createClient({ signal: controller.signal, onRetry: () => { $('status-text').textContent = say('Must не ответил. Повторяем запрос…', 'Must did not respond. Retrying…'); } });
@@ -118,7 +120,7 @@ for (const [button, file] of [['download-watched', 'letterboxd_watched.csv'], ['
 }
 $('backup-file').addEventListener('change', async event => {
   const file = event.target.files[0]; if (!file) return;
-  $('error').hidden = true;
+  currentError = null; $('error').hidden = true;
   try {
     if (file.size > 50 * 1024 * 1024) throw new Error('INVALID_BACKUP');
     const backup = JSON.parse(await file.text());
@@ -130,6 +132,6 @@ $('backup-file').addEventListener('change', async event => {
 $('demo').addEventListener('click', () => {
   const record = (id, title, year, status, rate, type = 'movie') => ({ product: { id, title, release_date: `${year}-01-01`, type }, user_product_info: { product_id: id, status, rate } });
   const backup = { format: 'must-rescue-v1', exported_at: new Date().toISOString(), profile: { uri: 'example', lists: { watched: [1, 2], want: [3] } }, data: { watched: [record(1, 'The Imaginary Cinema', '2001', 'watched', 9), record(2, 'A Film That Never Was', '2010', 'watched', 8)], want: [record(3, 'Tomorrow at the Movies', '2025', 'want', null)], shows: [], youtube: [] }, seasons: [], showStats: [], verification: {}, warnings: [] };
-  $('error').hidden = true; showResults(backup, true);
+  currentError = null; $('error').hidden = true; showResults(backup, true);
 });
 paint();
